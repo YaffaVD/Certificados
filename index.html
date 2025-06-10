@@ -2,25 +2,26 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Validador de Certificados</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Validar Certificado</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>Validando certificado...</h1>
-    <div class="mensaje" id="estado">Por favor, espera...</div>
+    <h1>Validación de Certificado</h1>
+    <p id="estado">🔄 Validando certificado...</p>
 
     <div id="selector" class="oculto">
-      <label for="sucursal">Selecciona una sucursal:</label>
+      <label for="sucursal">Selecciona la sucursal:</label>
       <select id="sucursal">
-        <option value="Centro">Centro</option>
-        <option value="Norte">Norte</option>
-        <option value="Sur">Sur</option>
+        <option value="" disabled selected>Elige una sucursal</option>
+        <option value="Sucursal Centro">Sucursal Centro</option>
+        <option value="Sucursal Norte">Sucursal Norte</option>
       </select>
-      <button onclick="enviarWhatsapp()">Enviar por WhatsApp</button>
+      <button onclick="enviarWhatsapp()">✅ Enviar por WhatsApp</button>
     </div>
   </div>
+
   <script src="validate.js"></script>
 </body>
 </html>
