@@ -3,7 +3,7 @@ const id = params.get("id");
 const estadoElem = document.getElementById("estado");
 const selector = document.getElementById("selector");
 
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbziwMltRQsVnUb7lyVIvI0J_8UdLXq2H_69GX-Ko7Xc29cwWdWh7mdoHPoEKZQbJXp3/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbzvSUTDKOSSFV4yzmdTXJuBy4ztRDWpQVJT51ETP8m2t6-JwMwWausrUV5m_7qtYFykYg/exec";
 
 let datosCertificado = null;
 
