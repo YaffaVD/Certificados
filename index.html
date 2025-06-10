@@ -3,35 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Validador de Certificados</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f3f3f3;
-      padding: 20px;
-      text-align: center;
-    }
-
-    #estado {
-      margin-top: 20px;
-      font-size: 18px;
-    }
-
-    .error {
-      color: red;
-      font-weight: bold;
-    }
-
-    .success {
-      color: green;
-      font-weight: bold;
-    }
-  </style>
+  <title>Validación de Certificado</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h2>🔍 Validando Certificado...</h2>
-  <div id="estado">⏳ Por favor espera...</div>
-
-  <script src="validate.js"></script>
+  <div class="container">
+    <h1>Validación de Certificado</h1>
+    <div id="mensaje" class="mensaje">Validando...</div>
+    <div id="sucursal-container" class="oculto">
+      <label for="sucursal">Selecciona la sucursal:</label>
+      <select id="sucursal">
+        <option value="Sucursal A">Sucursal A</option>
+        <option value="Sucursal B">Sucursal B</option>
+        <option value="Sucursal C">Sucursal C</option>
+      </select>
+      <button id="enviarBtn">Enviar a WhatsApp</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
