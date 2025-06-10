@@ -4,7 +4,7 @@ const estadoElem = document.getElementById("estado");
 const selector = document.getElementById("selector");
 const boton = document.querySelector("button");
 
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbzvSUTDKOSSFV4yzmdTXJuBy4ztRDWpQVJT51ETP8m2t6-JwMwWausrUV5m_7qtYFykYg/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbzvSUTDKOSSFV4yzmdTXJuBy4ztRDWpQVJT51ETP8m2t6-JwMwWausrUV5m_7qtYFykYg/exec"; // ⬅️ Pega tu URL aquí
 
 let certificadoListo = false;
 
@@ -53,8 +53,6 @@ async function enviarWhatsapp() {
     }
 
     const mensaje = `Número de certificado: ${id}%0ARegalo de: ${data.nombre}%0APromoción: ${data.promocion}%0ACosto: $${data.costo}%0ASucursal: ${sucursal}`;
-    
-    // ✅ Para compatibilidad con Android, usa setTimeout
     setTimeout(() => {
       window.location.href = `https://wa.me/5219632528129?text=${mensaje}`;
     }, 300);
