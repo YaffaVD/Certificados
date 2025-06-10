@@ -4,7 +4,7 @@ const estadoElem = document.getElementById("estado");
 const selector = document.getElementById("selector");
 const boton = document.querySelector("button");
 
-const SHEET_URL = "https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbzvSUTDKOSSFV4yzmdTXJuBy4ztRDWpQVJT51ETP8m2t6-JwMwWausrUV5m_7qtYFykYg/exec"; // 👈 pon tu URL final
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbzvSUTDKOSSFV4yzmdTXJuBy4ztRDWpQVJT51ETP8m2t6-JwMwWausrUV5m_7qtYFykYg/exec";
 
 let certificadoListo = false;
 
