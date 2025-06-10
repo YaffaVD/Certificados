@@ -2,7 +2,7 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 const estadoElem = document.getElementById("estado");
 
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbzvSUTDKOSSFV4yzmdTXJuBy4ztRDWpQVJT51ETP8m2t6-JwMwWausrUV5m_7qtYFykYg/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbxKOM3iS8NXYXYEQPFpKrzx0MgVLgkdL7D8YTgiyGwEiKTjVHrygwBMW2NpX1CRhs_huQ/exec";
 
 async function validarCertificado() {
   if (!id) {
