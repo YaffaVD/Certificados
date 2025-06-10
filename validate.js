@@ -1,7 +1,7 @@
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
-const WHATSAPP_BASE = "https://wa.me/5219632528129?text=";
+const WHATSAPP_BASE = "https://wa.me/529632528129?text=";
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbziwMltRQsVnUb7lyVIvI0J_8UdLXq2H_69GX-Ko7Xc29cwWdWh7mdoHPoEKZQbJXp3/exec";
 
 async function validarCertificado() {
