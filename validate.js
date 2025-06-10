@@ -5,6 +5,8 @@ const selector = document.getElementById("selector");
 
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbziwMltRQsVnUb7lyVIvI0J_8UdLXq2H_69GX-Ko7Xc29cwWdWh7mdoHPoEKZQbJXp3/exec";
 
+let datosCertificado = null;
+
 async function validarCertificado() {
   if (!id) {
     estadoElem.textContent = "❌ No se proporcionó el ID del certificado.";
@@ -12,13 +14,15 @@ async function validarCertificado() {
   }
 
   try {
-    const res = await fetch(`${SHEET_URL}?id=${id}&marcar=usado`);
+    const res = await fetch(`${SHEET_URL}?id=${id}`);
     const data = await res.json();
 
-    if (data.estado === "Usado") {
-      estadoElem.textContent = "⚠️ Este certificado ya fue utilizado.";
+    if (!data.valido) {
+      estadoElem.textContent = "⚠️ Este certificado ya fue utilizado o no existe.";
       return;
     }
+
+    datosCertificado = data;
 
     estadoElem.textContent = "✅ Certificado válido. Elige la sucursal para enviar.";
     selector.classList.remove("oculto");
@@ -32,10 +36,15 @@ async function enviarWhatsapp() {
   const sucursal = document.getElementById("sucursal").value;
 
   try {
-    const res = await fetch(`${SHEET_URL}?id=${id}&sucursal=${sucursal}`);
+    const res = await fetch(`${SHEET_URL}?id=${id}&sucursal=${encodeURIComponent(sucursal)}`);
     const data = await res.json();
 
-    const mensaje = `Número de certificado: ${id}%0ARegalo de: ${data.nombre}%0APromoción: ${data.promocion}%0ACosto: $${data.costo}%0AFecha: ${data.fecha}`;
+    if (!data.valido) {
+      estadoElem.textContent = "⚠️ Este certificado ya fue utilizado.";
+      return;
+    }
+
+    const mensaje = `Número de certificado: ${id}%0ARegalo de: ${data.nombre}%0APromoción: ${data.promocion}%0ACosto: $${data.costo}`;
     window.location.href = `https://wa.me/5219632528129?text=${mensaje}`;
   } catch (error) {
     estadoElem.textContent = "❌ Error al generar mensaje de WhatsApp.";
