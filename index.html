@@ -1,41 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Certificate Validation</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certificate Validator</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      text-align: center;
+      background-color: #f3f3f3;
       padding: 20px;
+      text-align: center;
     }
-    #card {
-      background-color: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      max-width: 400px;
-      width: 100%;
-    }
-    #status {
-      margin-bottom: 1rem;
-    }
-    .used {
-      color: #ff5555;
+    #estado {
+      margin-top: 20px;
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
-  <div id="card">
-    <h2>Validating Certificate</h2>
-    <div id="status">Please wait...</div>
-  </div>
+  <h2>Validating Certificate...</h2>
+  <div id="estado">Please wait</div>
 
   <script src="validate.js"></script>
 </body>
