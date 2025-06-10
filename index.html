@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Certificate Validator</title>
+  <title>Validador de Certificados</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,15 +11,26 @@
       padding: 20px;
       text-align: center;
     }
+
     #estado {
       margin-top: 20px;
       font-size: 18px;
     }
+
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+
+    .success {
+      color: green;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
-  <h2>Validating Certificate...</h2>
-  <div id="estado">Please wait</div>
+  <h2>🔍 Validando Certificado...</h2>
+  <div id="estado">⏳ Por favor espera...</div>
 
   <script src="validate.js"></script>
 </body>
