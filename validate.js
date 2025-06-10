@@ -1,36 +1,46 @@
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbziwMltRQsVnUb7lyVIvI0J_8UdLXq2H_69GX-Ko7Xc29cwWdWh7mdoHPoEKZQbJXp3/exec";
-
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
-const mensajeDiv = document.getElementById("mensaje");
-const sucursalContainer = document.getElementById("sucursal-container");
-const sucursalSelect = document.getElementById("sucursal");
-const enviarBtn = document.getElementById("enviarBtn");
+const estadoElem = document.getElementById("estado");
+const selector = document.getElementById("selector");
 
-fetch(`${SHEET_URL}?id=${id}`)
-  .then((res) => res.json())
-  .then((data) => {
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbziwMltRQsVnUb7lyVIvI0J_8UdLXq2H_69GX-Ko7Xc29cwWdWh7mdoHPoEKZQbJXp3/exec";
+
+async function validarCertificado() {
+  if (!id) {
+    estadoElem.textContent = "❌ No se proporcionó el ID del certificado.";
+    return;
+  }
+
+  try {
+    const res = await fetch(`${SHEET_URL}?id=${id}&marcar=usado`);
+    const data = await res.json();
+
     if (data.estado === "Usado") {
-      mensajeDiv.textContent = "Este certificado ya fue utilizado.";
-    } else if (data.estado === "Activo") {
-      mensajeDiv.textContent = `Certificado válido. Regalo de: ${data.nombre}`;
-      sucursalContainer.classList.remove("oculto");
-
-      enviarBtn.addEventListener("click", () => {
-        const sucursal = sucursalSelect.value;
-        const fechaEscaneo = new Date().toLocaleDateString("es-MX");
-
-        fetch(`${SHEET_URL}?id=${id}&marcar=usado&sucursal=${encodeURIComponent(sucursal)}&fecha=${encodeURIComponent(fechaEscaneo)}`)
-          .then(() => {
-            const mensaje = `Número de certificado: ${id}%0ARegalo de: ${data.nombre}%0APromoción: ${data.promocion}%0ACosto: $${data.costo}%0AFecha: ${fechaEscaneo}`;
-            const telefono = "5219632528129";
-            window.location.href = `https://wa.me/${telefono}?text=${mensaje}`;
-          });
-      });
-    } else {
-      mensajeDiv.textContent = "Certificado no encontrado.";
+      estadoElem.textContent = "⚠️ Este certificado ya fue utilizado.";
+      return;
     }
-  })
-  .catch(() => {
-    mensajeDiv.textContent = "Error al validar el certificado.";
-  });
+
+    estadoElem.textContent = "✅ Certificado válido. Elige la sucursal para enviar.";
+    selector.classList.remove("oculto");
+  } catch (error) {
+    estadoElem.textContent = "❌ Error al validar el certificado.";
+    console.error(error);
+  }
+}
+
+async function enviarWhatsapp() {
+  const sucursal = document.getElementById("sucursal").value;
+
+  try {
+    const res = await fetch(`${SHEET_URL}?id=${id}&sucursal=${sucursal}`);
+    const data = await res.json();
+
+    const mensaje = `Número de certificado: ${id}%0ARegalo de: ${data.nombre}%0APromoción: ${data.promocion}%0ACosto: $${data.costo}%0AFecha: ${data.fecha}`;
+    window.location.href = `https://wa.me/5219632528129?text=${mensaje}`;
+  } catch (error) {
+    estadoElem.textContent = "❌ Error al generar mensaje de WhatsApp.";
+    console.error(error);
+  }
+}
+
+validarCertificado();
