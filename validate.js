@@ -2,7 +2,7 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 const estadoElem = document.getElementById("estado");
 
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbxKOM3iS8NXYXYEQPFpKrzx0MgVLgkdL7D8YTgiyGwEiKTjVHrygwBMW2NpX1CRhs_huQ/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbzqlU5MdxJ5lWi1ypKkXXNwf5TYpx9RnZE8IVslHJbn2Owg9j34M4dFh3BlSFbA5Zx3rg/exec"; // Reemplaza con el tuyo
 
 async function validarCertificado() {
   if (!id) {
@@ -15,16 +15,16 @@ async function validarCertificado() {
     const data = await res.json();
 
     if (!data.valido) {
-      estadoElem.innerHTML = "⚠️ Este certificado ya fue utilizado.";
+      estadoElem.textContent = "⚠️ Este certificado ya fue utilizado.";
       return;
     }
 
     estadoElem.textContent = "✅ Certificado válido. Redireccionando a WhatsApp...";
 
-    const mensaje = `Número de certificado: ${id}%0ARegalo de: ${data.nombre}%0APromoción: ${data.promocion}%0ACosto: $${data.costo}`;
+    const mensaje = `Número de certificado: ${id}%0A🎁 Regalo de: ${data.de}%0A🎉 Para: ${data.para}%0A🏷 Promoción: ${data.promo}%0A💲 Costo: $${data.costo}`;
     setTimeout(() => {
       window.location.href = `https://wa.me/5219632528129?text=${mensaje}`;
-    }, 800);
+    }, 1000);
   } catch (error) {
     estadoElem.textContent = "❌ Error al validar el certificado.";
     console.error(error);
